@@ -12,7 +12,7 @@ var handleSubmit = function (event) {
     let observation = document.getElementById('observation').value;
 
 
-    if ((name && name !== "") && (user_phone && user_phone.length > 13) && (user_allias && user_allias !== "") && (user_phone && user_phone !== "") && (city && city !== "") && (street && street !== "") && (complement && complement !== "") && (email && email !== "")) {
+    if ((name && name !== "") && (user_phone && user_phone !== "") && (user_allias && user_allias !== "") && (user_phone && user_phone !== "") && (city && city !== "") && (street && street !== "") && (complement && complement !== "") && (email && email !== "")) {
         let requestOptions = {
             method: 'POST',
             body: JSON.stringify({
@@ -34,14 +34,15 @@ var handleSubmit = function (event) {
             .then(data => {
                 console.log(data)
             });
-
+        $("#user_name_display").html(name)
+        $("#user_phone_display").html(user_phone)
         $(".order-block").fadeOut();
-
 
         var resultWrapper = document.querySelector(".end-result-wrapper");
         setTimeout(function () {
             resultWrapper.style.display = "block";
             $(".end_result_class").slideDown();
+            location.href="#goto";
         }, 1000);
 
     } else {
@@ -51,32 +52,49 @@ var handleSubmit = function (event) {
             document.getElementById('user_name').classList.remove('inputErrorForm');
         }
 
-        if (!(user_phone && user_phone.length > 13)) {
-            document.getElementById('user_name').classList.add('inputErrorForm');
+        if (!(user_allias && user_allias !== "")) {
+            document.getElementById('user_allias').classList.add('inputErrorForm');
         } else {
-            document.getElementById('user_name').classList.remove('inputErrorForm');
+            document.getElementById('user_allias').classList.remove('inputErrorForm');
+        }
+
+        if (!(user_phone && user_phone !== "")) {
+            document.getElementById('user_phone').classList.add('inputErrorForm');
+        } else {
+            document.getElementById('user_phone').classList.remove('inputErrorForm');
         }
 
         if (!(city && city !== "")) {
-            document.getElementById('user_name').classList.add('inputErrorForm');
+            document.getElementById('city').classList.add('inputErrorForm');
         } else {
-            document.getElementById('user_name').classList.remove('inputErrorForm');
+            document.getElementById('city').classList.remove('inputErrorForm');
+        }
+
+        if (!(street && street !== "")) {
+            document.getElementById('street').classList.add('inputErrorForm');
+        } else {
+            document.getElementById('street').classList.remove('inputErrorForm');
         }
 
         if (!(complement && complement !== "")) {
-            document.getElementById('user_name').classList.add('inputErrorForm');
+            document.getElementById('complement').classList.add('inputErrorForm');
         } else {
-            document.getElementById('user_name').classList.remove('inputErrorForm');
+            document.getElementById('complement').classList.remove('inputErrorForm');
         }
 
         if (!(email && email !== "")) {
-            document.getElementById('user_name').classList.add('inputErrorForm');
+            document.getElementById('email').classList.add('inputErrorForm');
         } else {
-            document.getElementById('user_name').classList.remove('inputErrorForm');
+            document.getElementById('email').classList.remove('inputErrorForm');
         }
     }
 };
 
+function resetForm () {
+    $(".end_result_class").slideUp();
+    $(".order-block").fadeIn();
+    location.href="#goto";
+}
 
 function mask(o, f) {
     setTimeout(function () {

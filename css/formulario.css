@@ -289,6 +289,13 @@ h4 strong {
     .show-on-call-action-form .container {
         padding: 1em 1em 1em 1em;
     }
+    .order-block {
+        padding: 0 !important;
+    }
+    .show-on-call-action-form {
+        width: 100% !important;
+        padding: 0 !important;
+    }
 }
 
 .end-result-wrapper {
